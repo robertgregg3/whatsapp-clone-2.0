@@ -1,9 +1,15 @@
-import "./App.css";
+import React from "react";
+import Sidebar from "./Components/Sidebar";
+import Chat from "./Components/Chat";
+import "./css/App.css";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Lets build</h1>
+    <div className="app">
+      <div className="app__body">
+        <Sidebar />
+        <Chat />
+      </div>
     </div>
   );
 }
