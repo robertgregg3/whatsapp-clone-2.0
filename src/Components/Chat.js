@@ -5,20 +5,22 @@ import { AttachFile, SearchOutlined } from "@material-ui/icons";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
-import axios from "axios";
+import axios from "../axios";
 
 const Chat = ({ messages }) => {
   const [text, setText] = useState("");
 
-  const sendMessage = (e) => {
-    e.prevemtDefault();
+  const sendMessage = async (e) => {
+    e.preventDefault();
 
-    axios.post("/new/message", {
+    await axios.post("/message/new", {
       message: text,
       name: "Rob",
       timestamp: "Just now",
       received: false,
     });
+
+    setText("");
   };
 
   return (
@@ -62,7 +64,7 @@ const Chat = ({ messages }) => {
             type="text"
             placeholder="Type a message"
           />
-          <button onSubmit={sendMessage} type="submit">
+          <button onClick={sendMessage} type="submit">
             Send a message
           </button>
         </form>
