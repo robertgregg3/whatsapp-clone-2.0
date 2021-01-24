@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/Chat.css";
 import { Avatar, IconButton } from "@material-ui/core";
 import { AttachFile, SearchOutlined } from "@material-ui/icons";
@@ -9,6 +9,11 @@ import axios from "../axios";
 
 const Chat = ({ messages }) => {
   const [text, setText] = useState("");
+  const [seed, setSeed] = useState("");
+
+  useEffect(() => {
+    setSeed(Math.floor(Math.random() * 500));
+  }, []);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -26,7 +31,7 @@ const Chat = ({ messages }) => {
   return (
     <div className="chat">
       <div className="chat__header">
-        <Avatar />
+        <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
         <div className="chat__headerInfo">
           <h3>Room Name</h3>
           <p>Last seen at...</p>
