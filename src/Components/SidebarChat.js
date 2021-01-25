@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Avatar } from "@material-ui/core";
-import "../css/SidebarChat.css";
 import db from "../firebase";
 import { Link } from "react-router-dom";
+import "../css/SidebarChat.css";
 
 export const SidebarChat = ({ addNewChat, name, id }) => {
   const [seed, setSeed] = useState("");
 
   useEffect(() => {
-    setSeed(Math.floor(Math.random() * 500));
+    setSeed(Math.floor(Math.random() * 5000));
   }, []);
 
   const createChat = () => {
