@@ -1,31 +1,23 @@
 import React, { useState, useEffect } from "react";
-import "../css/Chat.css";
+import { useParams } from "react-router-dom";
 import { Avatar, IconButton } from "@material-ui/core";
 import { AttachFile, SearchOutlined } from "@material-ui/icons";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
-import axios from "../axios";
+import "../css/Chat.css";
 
 const Chat = ({ messages }) => {
-  const [text, setText] = useState("");
   const [seed, setSeed] = useState("");
+  const [text, setText] = useState("");
+  const { roomId } = useParams();
 
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 500));
   }, []);
 
-  const sendMessage = async (e) => {
-    e.preventDefault();
-
-    await axios.post("/message/new", {
-      message: text,
-      name: "Rob",
-      timestamp: "Just now",
-      received: false,
-    });
-
-    setText("");
+  const sendMessage = () => {
+    alert("hi");
   };
 
   return (
@@ -50,15 +42,11 @@ const Chat = ({ messages }) => {
       </div>
 
       <div className="chat__body">
-        {messages.map((m) => (
-          <p
-            className={`chat__message ${!m.received && "chat__receiver"}`}
-            key={m._id}>
-            <span className="chat__name">{m.name}</span>
-            <span>{m.message}</span>
-            <span className="chat__timestamp">{m.timestamp}</span>
-          </p>
-        ))}
+        <p className="chat__message chat__receiver">
+          <span className="chat__name">Dev Chat</span>
+          <span>Hey Guys</span>
+          <span className="chat__timestamp">Yesterday</span>
+        </p>
       </div>
       <div className="chat__footer">
         <InsertEmoticonIcon />
